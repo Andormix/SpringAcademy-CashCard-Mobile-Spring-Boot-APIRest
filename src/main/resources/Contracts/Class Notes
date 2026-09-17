@@ -1,0 +1,33 @@
+Summary of the core concepts I built/validated in Module 1:
+
+1. Test-Driven Development (TDD) Cycle
+
+Red-Green-Refactor: You wrote failing tests first (shouldReturnACashCardWhenDataIsSaved), implemented the minimal code in CashCardController to make them pass, and refactored the hardcoded values into a dynamic database repository.
+
+2. REST Controllers & Annotations
+
+@RestController: Registers the class as a Spring Bean to handle incoming HTTP requests and automatically serializes Java return values to JSON responses.
+
+@RequestMapping("/cashcards"): Establishes the base URI path for all endpoints in the controller.
+
+@GetMapping("/{requestedId}") & @PathVariable: Maps HTTP GET requests with path parameters. Spring converts the path variable directly into a Java Long.
+
+3. Spring Data JDBC & Persistence
+
+CrudRepository<CashCard, Long>: Abstracts SQL database access by providing ready-to-use CRUD operations (findById, save, deleteById) without requiring manual SQL queries.
+
+@Id Annotation: Marks the primary key field inside the CashCard record.
+
+Optional<T> Pattern: Handles database lookups cleanly using isPresent() to return 200 OK or 404 Not Found.
+
+4. Dependency Injection & Configuration
+
+Constructor Injection: Passing CashCardRepository into CashCardController's constructor allows Spring to automatically wire the bean instance at startup.
+
+Database Initialization: schema.sql creates the database table structure, while data.sql populates seed records before tests execute.
+
+5. Integration Testing Tooling
+
+TestRestTemplate: Simulates real HTTP clients (like Postman) hitting a live Spring Boot server running on a random port during tests without throwing unhandled exceptions on 4xx/5xx responses.
+
+JsonPath (DocumentContext): Parses JSON string bodies to assert specific field types and values ($.id, $.amount).
