@@ -20,6 +20,14 @@ class SecurityConfig {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception
     {
+        /*
+        * All HTTP requests to cashcards/ endpoints are required to be authenticated using HTTP Basic Authentication security (username and password).
+        * Also, do not require CSRF security.
+        * */
+
+        http.authorizeHttpRequests(request -> request.requestMatchers("/cashcards/**")
+                .authenticated()).httpBasic(Customizer.withDefaults()).csrf(csrf -> csrf.disable());
+
         return http.build();
     }
 
@@ -27,5 +35,17 @@ class SecurityConfig {
     PasswordEncoder passwordEncoder()
     {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    UserDetailsService testOnlyUsers(PasswordEncoder passwordEncoder)
+    {
+        User.UserBuilder users = User.builder();
+        UserDetails sarah = users
+                .username("sarah1")
+                .password(passwordEncoder.encode("abc123"))
+                .roles() // No roles for now
+                .build();
+        return new InMemoryUserDetailsManager(sarah);
     }
 }
