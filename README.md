@@ -1,40 +1,46 @@
-# CashCard API — Spring Boot RESTful Microservice (TDD & Security)
+# CashCard App — Full-Stack Spring Boot & Ionic Mobile Ecosystem
 
 <p align="center">
-  <img width="1530" height="814" alt="image" src="https://github.com/user-attachments/assets/b08d051a-8ac0-4566-a6e6-375ccb36a953" />
+  <img width="1530" height="814" alt="CashCard Architecture Preview" src="https://github.com/user-attachments/assets/b08d051a-8ac0-4566-a6e6-375ccb36a953" />
 </p>
 
-A production-grade RESTful Web Service built with **Java 17** and **Spring Boot**, fully driven by **Test-Driven Development (TDD)** principles. This service manages financial `CashCard` resources, implementing strict role-based/owner-based access controls, JSON payload contract testing, and relational persistence.
+A production-grade full-stack digital wallet solution combining a robust **Spring Boot 3 / Java 17** RESTful backend with an **Ionic 8 + Vue 3 (TypeScript)** cross-platform mobile client. Built using **Test-Driven Development (TDD)**, the application enforces strict owner-based access control, secure cross-origin communication (CORS), and dynamic mobile user interfaces.
 
 ---
 
-## Tech Stack & Key Tools
+## Tech Stack & Core Architecture
 
-* **Language:** Java 17 / OpenJDK
-* **Framework:** Spring Boot 4.x (Spring Web, Spring Security, Spring Data JDBC)
-* **Testing:** JUnit 5, AssertJ, `TestRestTemplate`, `@JsonTest`, `JacksonTester`, `JsonPath`
-* **Security:** Spring Security (HTTP Basic Authentication & Principal-Based Data Access)
+### Backend (Spring Boot REST API)
+* **Language & Framework:** Java 17 / OpenJDK, Spring Boot 3.x (Spring Web, Spring Security, Spring Data JDBC)
+* **Security:** HTTP Basic Authentication, Principal-Based Access Control, Custom CORS Configuration
+* **Testing:** JUnit 5, AssertJ, `TestRestTemplate`, `@JsonTest`, `JacksonTester`
 * **Persistence & DB:** Spring Data `CrudRepository` / `PagingAndSortingRepository`, H2 In-Memory DB
 * **Build System:** Gradle
 
+### Frontend (Ionic Vue Mobile Client)
+* **Framework & UI:** Vue 3 (Composition API `<script setup>`), Ionic Framework 8, IonIcons
+* **HTTP Client & CORS:** Axios (configured with HTTP Basic Auth headers)
+* **Mobile Design:** Dynamic gradient card themes, `ion-action-sheet` native modal overlays, responsive wallet layout
+* **Language & Tooling:** TypeScript, Vite, Node.js
+
 <p align="center">
-  <img width="743" height="653" alt="Spring Boot Execution" src="https://github.com/user-attachments/assets/194b73ea-113d-4f9b-8aa9-a84c160fbf9e" />
+  <img width="48%" alt="CashCard Architecture Preview" src="https://github.com/user-attachments/assets/194b73ea-113d-4f9b-8aa9-a84c160fbf9e" />
+  <img width="48%" alt="Screenshot 2026-09-18 212138" src="https://github.com/user-attachments/assets/4874a2e0-e4fc-4a18-a5f1-a614365fd4e7" />
 </p>
 
 ---
 
-## Architecture & Core Concepts Applied
+## Architecture & Core Engineering Patterns
 
-* **Test-Driven Development (TDD):** Rigorously followed the **Red-Green-Refactor** cycle for both domain logic and integration HTTP endpoints.
-* **Owner-Based Access Control (OBAC):** Enforced resource isolation at the data layer using `Principal.getName()` and custom Spring Data query methods (e.g., `findByIdAndOwner`) to prevent unauthorized access or data tampering.
-* **Contract & Integration Testing:** Isolated serialization/deserialization verification using `@JsonTest` and full-stack HTTP pipeline validation with `TestRestTemplate`.
-* **Pagination & Sorting:** Optimized data retrieval endpoints using Spring Data's `PageRequest` to handle large collections efficiently.
+* **Test-Driven Development (TDD):** Rigorously applied the Red-Green-Refactor cycle for domain logic, repository queries, and REST endpoint integration testing.
+* **Owner-Based Access Control (OBAC):** Enforced strict resource isolation at the database layer using `Principal.getName()` and custom Spring Data queries (`findByIdAndOwner`).
+* **Cross-Origin Resource Sharing (CORS):** Configured Spring Security CORS filters to safely expose endpoints to the Ionic mobile client running across web and native origins.
+* **Dynamic UI & Reactive State:** Reactive Vue 3 state management with automatic card theme rotation using index modulo logic (`index % 4`) for visual distinction.
+* **Native ActionSheets:** Replaced native browser alerts with Ionic's native `ion-action-sheet` controller for destructive delete operations.
 
-
+---
 
 ## API Specification & Supported Operations
-
-The API strictly adheres to HTTP semantics and RESTful standards:
 
 | Method | Endpoint | Description | Auth Required | Expected Status |
 | :--- | :--- | :--- | :---: | :--- |
@@ -44,16 +50,26 @@ The API strictly adheres to HTTP semantics and RESTful standards:
 | **PUT** | `/cashcards/{id}` | Update an existing CashCard amount | Yes | `204 NO_CONTENT` / `404 NOT_FOUND` |
 | **DELETE** | `/cashcards/{id}` | Hard delete a CashCard | Yes | `204 NO_CONTENT` / `404 NOT_FOUND` |
 
-> **Security Note:** Attempting to read, update, or delete a `CashCard` belonging to another user returns a `404 NOT_FOUND` (or `403 FORBIDDEN`), hiding the existence of unauthorized resources.
+> **Security Note:** Attempting to read, update, or delete a `CashCard` belonging to another user returns `404 NOT_FOUND` (or `403 FORBIDDEN`), completely hiding the existence of unauthorized resources.
 
 ---
 
 ## Project Structure
 
 ```text
-src/main/java/com/andormix/cashcard/
-├── CashCard.java                 # Immutable Record Domain Model
-├── CashCardController.java       # REST Controller (HTTP mapping & Security Context)
-├── CashCardRepository.java       # Spring Data JDBC Repository & Custom Query Methods
-└── SecurityConfig.java           # Spring Security Authentication & Authorization Setup
+cashcard-ecosystem/
+├── backend/                              # Spring Boot RESTful API
+│   └── src/main/java/com/andormix/cashcard/
+│       ├── CashCard.java                 # Immutable Record Domain Model
+│       ├── CashCardController.java       # REST Controller (HTTP mapping & Security Context)
+│       ├── CashCardRepository.java       # Spring Data JDBC Repository & Custom Queries
+│       └── SecurityConfig.java           # Spring Security (Basic Auth & CORS Config)
+│
+└── frontend/                             # Ionic Vue 3 Mobile Client
+    └── src/
+        ├── views/
+        │   └── HomePage.vue              # Main Wallet Dashboard, Auth Form & Multi-color Cards
+        ├── services/
+        │   └── api.ts                    # Axios HTTP Client with Basic Auth Interceptors
+        └── App.vue                       # Ionic Root Router Outlet Container<img width="611" height="648" alt="Screenshot 2026-09-18 212138" src="https://github.com/user-attachments/assets/5acfc419-6e87-434c-af38-c6a25e2c2485" />
 
