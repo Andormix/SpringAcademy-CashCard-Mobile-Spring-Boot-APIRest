@@ -78,4 +78,35 @@ public class CashCardController {
 
         return ResponseEntity.created(locationOfNewCashCard).build();
     }
+
+    @PutMapping("/{requestedId}")
+    private ResponseEntity<Void> updateCashCard(@PathVariable Long requestedId, @RequestBody CashCard newCashCardRequest, Principal principal){
+
+        Optional<CashCard> cashCardCOptional = Optional.ofNullable(cashCardRepository.findByIdAndOwner(requestedId, principal.getName()));
+
+        if (cashCardCOptional.isPresent())
+        {
+            //Extraigo el objeto de optional
+            CashCard actualCashCard = cashCardCOptional.get();
+
+            // Construyo el objeto actualizado usando el ID existente y el owner autenticado (SEGURIDAD)
+            CashCard updatedCashCard = new CashCard(actualCashCard.id(), newCashCardRequest.amount(), principal.getName());
+
+            // 2. Guardo los cambios en la BD (ejecuta un UPDATE al tener ID)
+            cashCardRepository.save(updatedCashCard);
+
+            // UPDATE
+            return ResponseEntity.noContent().build();
+
+        }
+        else
+        {
+            return ResponseEntity.notFound().build();
+        }
+
+    }
+
+
+
+
 }
