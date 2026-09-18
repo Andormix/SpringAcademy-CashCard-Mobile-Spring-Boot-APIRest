@@ -16,6 +16,7 @@ import java.util.Optional;
 @RestController //This tells Spring that this class is a Component of type RestController and capable of handling HTTP requests.
 //Also it tells Spring's component scanner: "Create and manage a bean for this class. " Autowiring
 @RequestMapping("/cashcards") // This is a companion to @RestController that indicates which address requests must have to access this Controller.
+@CrossOrigin(origins = "http://localhost:8100", allowCredentials = "true")
 public class CashCardController {
 
     private final CashCardRepository cashCardRepository;
