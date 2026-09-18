@@ -47,7 +47,7 @@ public class CashCardController {
     @GetMapping("/{requestedId}") //@GetMapping marks a method as a handler method. GET requests that match cashcards/{requestedID} will be handled by this method.
     private ResponseEntity<CashCard> findById(@PathVariable Long requestedId, Principal principal) {
 
-       CashCard cashCard = cashCardRepository.findByIdAndOwner(requestedId, principal.getName());
+       CashCard cashCard = findCashCard(requestedId, principal);
 
         if (cashCard != null )
         {
@@ -82,7 +82,7 @@ public class CashCardController {
     @PutMapping("/{requestedId}")
     private ResponseEntity<Void> updateCashCard(@PathVariable Long requestedId, @RequestBody CashCard newCashCardRequest, Principal principal){
 
-       CashCard cashCard = cashCardRepository.findByIdAndOwner(requestedId, principal.getName());
+       CashCard cashCard = findCashCard(requestedId, principal);
 
         if (cashCard != null)
         {
@@ -101,7 +101,10 @@ public class CashCardController {
         }
     }
 
+    // HELPERS
 
-
-
+    private CashCard findCashCard(Long requestedId, Principal principal)
+    {
+        return cashCardRepository.findByIdAndOwner(requestedId, principal.getName());
+    }
 }
