@@ -101,6 +101,24 @@ public class CashCardController {
         }
     }
 
+
+    @DeleteMapping("/{requestedId}")
+    private ResponseEntity<Void> updateCashCard(@PathVariable Long requestedId, Principal principal)
+    {
+        CashCard cashCard = findCashCard(requestedId, principal);
+
+        if(cashCard != null)
+        {
+            // 2. Guardo los cambios en la BD (HARD DELETION WITH NO AUDIT OR BOOL VALUE IN TABLE IS_DELETED)
+            cashCardRepository.delete(cashCard);
+            return ResponseEntity.noContent().build();
+
+            // Aquí pondría la log de auditoría.
+
+        }
+        return ResponseEntity.notFound().build();
+    }
+
     // HELPERS
 
     private CashCard findCashCard(Long requestedId, Principal principal)

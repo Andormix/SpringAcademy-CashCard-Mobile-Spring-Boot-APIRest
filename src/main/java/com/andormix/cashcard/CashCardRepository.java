@@ -11,4 +11,5 @@ interface CashCardRepository  extends CrudRepository<CashCard, Long>, PagingAndS
     // TO READ https://docs.spring.io/spring-data/relational/reference/repositories/query-methods-details.html
     CashCard findByIdAndOwner(Long id, String owner);
     Page<CashCard> findByOwner(String owner, PageRequest pageRequest);
+    boolean existsByIdAndOwner(Long id, String owner);
 }
