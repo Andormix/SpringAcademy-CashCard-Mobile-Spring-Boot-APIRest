@@ -4,7 +4,20 @@
   <img width="1530" height="814" alt="CashCard Architecture Preview" src="https://github.com/user-attachments/assets/b08d051a-8ac0-4566-a6e6-375ccb36a953" />
 </p>
 
+> 🎓 **Academic & Certification Context:**
+> The backend of this project represents my personal hands-on solution for the **"Building a REST API with Spring Boot"** lab, part of the official **Spring Certified Professional** learning path. It expands upon the core lab deliverables by integrating a modern full-stack ecosystem with a cross-platform mobile client.
+
+---
+
 A production-grade full-stack digital wallet solution combining a robust **Spring Boot 3 / Java 17** RESTful backend with an **Ionic 8 + Vue 3 (TypeScript)** cross-platform mobile client. Built using **Test-Driven Development (TDD)**, the application enforces strict owner-based access control, secure cross-origin communication (CORS), and dynamic mobile user interfaces.
+
+---
+
+## 📚 Course & Certification Info
+
+* **Course:** *Building a REST API with Spring Boot*
+* **Learning Path:** *Spring Certified Professional*
+* **Core Topics Covered:** Project bootstrapping with Spring Initializr, RESTful CRUD endpoints, pagination/sorting, TDD integration testing, and principal-based authentication/authorization with Spring Security.
 
 ---
 
@@ -58,18 +71,17 @@ A production-grade full-stack digital wallet solution combining a robust **Sprin
 
 ```text
 cashcard-ecosystem/
-├── backend/                              # Spring Boot RESTful API
+├── backend/                               # Spring Boot RESTful API (Lab Solution)
 │   └── src/main/java/com/andormix/cashcard/
 │       ├── CashCard.java                 # Immutable Record Domain Model
 │       ├── CashCardController.java       # REST Controller (HTTP mapping & Security Context)
 │       ├── CashCardRepository.java       # Spring Data JDBC Repository & Custom Queries
 │       └── SecurityConfig.java           # Spring Security (Basic Auth & CORS Config)
 │
-└── frontend/                             # Ionic Vue 3 Mobile Client
+└── frontend/                              # Ionic Vue 3 Mobile Client
     └── src/
         ├── views/
         │   └── HomePage.vue              # Main Wallet Dashboard, Auth Form & Multi-color Cards
         ├── services/
         │   └── api.ts                    # Axios HTTP Client with Basic Auth Interceptors
-        └── App.vue                       # Ionic Root Router Outlet Container<img width="611" height="648" alt="Screenshot 2026-09-18 212138" src="https://github.com/user-attachments/assets/5acfc419-6e87-434c-af38-c6a25e2c2485" />
-
+        └── App.vue                       # Ionic Root Router Outlet Container
