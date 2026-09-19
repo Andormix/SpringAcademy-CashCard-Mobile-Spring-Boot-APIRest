@@ -13,7 +13,7 @@ A production-grade full-stack digital wallet solution combining a robust **Sprin
 
 ---
 
-## 📚 Course & Certification Info
+## Course & Certification Info
 
 * **Course:** *Building a REST API with Spring Boot*
 * **Learning Path:** *Spring Certified Professional*
