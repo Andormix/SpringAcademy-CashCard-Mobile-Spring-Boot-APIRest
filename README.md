@@ -7,14 +7,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-Frontend-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](#)
 [![TDD](https://img.shields.io/badge/Testing-TDD-9C27B0?style=for-the-badge)](#)
 
-<p align="center">
-  <img
-    width="1530"
-    height="814"
-    alt="CashCard Architecture Preview"
-    src="https://github.com/user-attachments/assets/b08d051a-8ac0-4566-a6e6-375ccb36a953"
-  />
-</p>
+<img width="1115" height="941" alt="image" src="https://github.com/user-attachments/assets/b288df7d-e890-4303-9ca8-229843c3cc86" />
 
 A full-stack digital wallet application built with a **Spring Boot REST API** and a **Vue-based mobile client**.
 
@@ -104,6 +97,15 @@ The project focuses on the core principles required to build production-oriented
 - REST integration tests.
 - Custom CORS configuration.
 - Gradle build automation.
+
+<p align="center">
+  <img
+    width="1530"
+    height="814"
+    alt="CashCard Architecture Preview"
+    src="https://github.com/user-attachments/assets/b08d051a-8ac0-4566-a6e6-375ccb36a953"
+  />
+</p>
 
 ### Frontend Features
 
