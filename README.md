@@ -119,13 +119,16 @@ The project focuses on the core principles required to build production-oriented
 - Dynamic card color themes.
 - Ionic action sheets for destructive actions.
 
+<p >
+  <img width="48%" alt="Screenshot 2026-09-18 212138" src="https://github.com/user-attachments/assets/4874a2e0-e4fc-4a18-a5f1-a614365fd4e7" />
+</p>
+
 ---
 
 ## Architecture
 
-<p align="center">
-  <img width="48%" alt="CashCard Architecture Preview" src="https://github.com/user-attachments/assets/194b73ea-113d-4f9b-8aa9-a84c160fbf9e" />
-  <img width="48%" alt="Screenshot 2026-09-18 212138" src="https://github.com/user-attachments/assets/4874a2e0-e4fc-4a18-a5f1-a614365fd4e7" />
+<p>
+  <img width="75%" alt="CashCard Architecture Preview" src="https://github.com/user-attachments/assets/194b73ea-113d-4f9b-8aa9-a84c160fbf9e" />
 </p>
 
 ---
